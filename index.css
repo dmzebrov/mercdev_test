@@ -1,0 +1,273 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('fonts/GothamMedium.ttf');
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Gotham';
+    font-weight: normal;
+    margin: 0;
+}
+
+div, input {
+    box-sizing: border-box;
+}
+
+
+
+.background {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.background > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+main {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+    padding: 25px 0;
+}
+
+.logo {
+    margin-bottom: 125px;
+}
+
+.logo > img {
+    width: 315px;
+    height: 69px;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    padding: 48px 48px 60px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
+}
+
+.form_logged-in {
+    display: none;
+}
+
+.form_title {
+    margin-bottom: 48px;
+}
+
+.form_title > h3 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #262626;
+    opacity: 0.8;
+}
+
+.form_inputs {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    height: 48px;
+    padding: 14px 16px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    font-family: 'Gotham';
+    font-size: 16px;
+    color: #262626;
+    opacity: 0.8;
+}
+
+input::placeholder {
+    font-size: 16px;
+    opacity: 0.4;
+}
+
+input:-moz-ui-invalid {
+    box-shadow: none;
+    color: #ed4159;
+    border: 1px solid #ed4159;
+}
+
+.form_password > input {
+    margin-bottom: 0;
+}
+
+
+.form_error {
+    display: none;
+    align-items: center;
+    padding: 0 16px;
+    width: 100%;
+    height: 40px;
+    margin-top: 32px;
+    border-radius: 4px;
+    background-color: rgba(237, 65, 89, 0.25);
+    color: #ed4159;
+}
+
+.form_error > h4 {
+    font-size: 14px;
+}
+
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 0 32px;
+    margin-top: 48px;
+    background-color: #ed4159;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
+    color: #fff;
+    font-family: 'Gotham';
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+button:hover {
+    color: #ed4159;
+    box-shadow: 0 6px 20px 0 rgba(237, 65, 89, 0.4);
+    background-color: #ffffff;
+}
+
+button:active {
+    outline: none;
+    box-shadow: 0 2px 10px 0 rgba(237, 65, 89, 0.5);
+    background-color: #ffffff;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+  }
+  
+  
+
+.form_logged-in > button {
+    margin-top: 56px;
+}
+
+
+.form_avatar {
+    width: 128px;
+    height: 128px;
+    border: 1px solid #979797;
+    border-radius: 50%;
+    background-color: #979797;
+    margin-bottom: 40px;
+}
+
+.form_avatar > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.form_name > h2 {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: #262626;
+    opacity: 0.8;
+}
+
+
+
+@media screen and (max-width: 650px) {
+    .logo {
+        margin-bottom: 37px;
+    }
+
+    .logo > img {
+        width: 182px;
+        height: 40px;
+    }
+
+
+    .form {
+        width: 288px;
+        height: 408px;
+        padding: 32px 24px 48px;
+    }
+
+    .form_title {
+        margin-bottom: 32px;
+    }
+
+    .form_title > h3 {
+        font-size: 20px;
+    }
+
+    .form_avatar {
+        width: 86px;
+        height: 86px;
+    }
+
+    .form_name > h2 {
+        font-size: 18px;
+    }
+
+    input {
+        margin-bottom: 24px;
+    }
+
+    .form_error {
+        margin-top: 24px;
+    }
+
+    .form_error > h4 {
+        font-size: 12px;
+    }
+
+    button {
+        margin-top: 40px;
+    }
+}

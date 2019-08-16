@@ -9,7 +9,55 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
 </head>
-<body>
-    <h1>Test</h1>
+<body onload="app.init()">
+    <div class="background">
+        <img src="files/background.png" alt="background">
+    </div>
+
+    <main>
+        <div class="main_container">
+            <div class="logo">
+                <img src="files/w-mercury-development.svg" alt="logo">
+            </div>
+
+            <div id="logInForm" class="form">
+                <div class="form_title">
+                    <h3>Log In</h3>
+                </div>
+
+                <div class="form_inputs">
+                    <div class="form_email">
+                        <input id="email" type="email" placeholder="E-Mail" onkeyup="app.dataHandle('email', value)" spellcheck="false">
+                    </div>
+
+                    <div class="form_password">
+                        <input id="password" type="password" placeholder="Password" onkeyup="app.dataHandle('password', value)">
+                    </div>
+                </div>
+
+                <div id="inputError" class="form_error">
+                    <h4>E-Mail or password is incorrect</h4>
+                </div>
+
+                <button onclick="app.logIn()">
+                    Login
+                </button>
+            </div>
+
+            <div id="loggedInBlock" class="form form_logged-in">
+                <div class="form_avatar">
+                    <img id="avatar" alt="avatar">
+                </div>
+
+                <div class="form_name">
+                    <h2 id="name"></h2>
+                </div>
+
+                <button onclick="app.logOut()">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
