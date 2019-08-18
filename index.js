@@ -15,8 +15,8 @@ var app = {
     },
 
 
-    updateAppState: function() {
-        if (this.loggedIn) {
+    updateAppState: function(updateType) {
+        if (updateType == 'logged-in') {
             document.getElementById('name').innerHTML = this.name;
             document.getElementById('avatar').setAttribute("src", this.avatar);
             document.getElementById('logInForm').style.display = 'none';
@@ -24,48 +24,53 @@ var app = {
 
             return;
         }
-        if (this.inputDataError) {
+        if (updateType == 'log-in-error') {
             document.getElementById('inputError').style.display = 'flex';
             document.getElementById('email').style.color = '#ed4159';
             document.getElementById('email').style.border = '1px solid #ed4159';
+            document.getElementById('password').style.color = '#ed4159';
+            document.getElementById('password').style.border = '1px solid #ed4159';
             document.getElementById('password').value = '';
 
             return;
         }
-        else {
-            this.email = '';
-            this.password = '';
-            this.avatar = '';
-            this.name = '';
-
+        if (updateType == 'log-out') {
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
 
             document.getElementById('logInForm').style.display = 'flex';
             document.getElementById('loggedInBlock').style.display = 'none';
-        }
+
+            return;
+        };
     },
 
-
+    
     dataHandle: function(data, value) {
+        this.inputDataError = false;
+
+        // document.getElementById('inputError').style.display = 'none';
+        document.getElementById(data).style.color = '#262626';
+        document.getElementById(data).style.border = 'none';
+
+        if (event.keyCode == 13) {
+            this.logIn();
+
+            return;
+        };
+
         this[data] = value;
     },
 
 
     dataCheck: function() {
-        if (!this.email.length && !this.password.length) {
+        if (!this.email.length || !this.password.length) {
             this.inputDataError = true;
 
-            document.getElementById('inputError').style.display = 'flex';
-            document.getElementById('email').style.color = '#ed4159';
-            document.getElementById('email').style.border = '1px solid #ed4159';
-            document.getElementById('password').value = '';
+            this.updateAppState('log-in-error');
+            
         } else {
             this.inputDataError = false;
-
-            document.getElementById('inputError').style.display = 'none';
-            document.getElementById('email').style.color = '#262626';
-            document.getElementById('email').style.border = 'none';
         };
     },
 
@@ -94,27 +99,28 @@ var app = {
                     app.name = response.name;
                     app.avatar = response.photoUrl;
     
-                    app.updateAppState();
+                    app.updateAppState('logged-in');
                 }
                 if (this.status == 400) {
                     app.inputDataError = true;
 
-                    app.updateAppState();
+                    app.updateAppState('log-in-error');
                 };
             };
 
             http.send(JSON.stringify(loginData));
         } else {
-            console.log('stop it!');
+            return;
         }
     },
 
     logOut: function() {
         this.loggedIn = false;
+        this.email = '';
+        this.password = '';
+        this.avatar = '';
+        this.name = '';
 
-        this.updateAppState();
+        this.updateAppState('log-out');
     }
-
-
 }
-
