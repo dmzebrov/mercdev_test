@@ -8,6 +8,55 @@ var app = {
   avatar: "",
   name: "",
 
+  logIn: async function(e) {
+    e.preventDefault();
+
+    this.handleData("email");
+    this.handleData("password");
+    this.checkData();
+
+    if (!this.inputDataError) {
+      let loginData = {
+        email: this.email,
+        password: this.password
+      };
+
+      let request = await this.makeRequest(
+        "https://us-central1-mercdev-academy.cloudfunctions.net/login",
+        "POST",
+        loginData
+      );
+      let accountData = await request.json();
+
+      if (request.status == 200) {
+        this.inputDataError = false;
+        this.loggedIn = true;
+
+        this.name = accountData.name;
+        this.avatar = accountData.photoUrl;
+
+        this.updateAppState("logged-in");
+      }
+      if (request.status == 400) {
+        this.inputDataError = true;
+        this.updateAppState("log-in-error");
+      }
+    } else {
+      return;
+    }
+  },
+
+  logOut: function() {
+    this.loggedIn = false;
+    this.email = "";
+    this.password = "";
+    this.avatar = "";
+    this.name = "";
+
+    this.updateAppState("log-out");
+  },
+
+  /* ---> UTILITIES */
   init: function() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -43,23 +92,16 @@ var app = {
     }
   },
 
-  dataHandle: function(data, value) {
+  handleData: function(data) {
     this.inputDataError = false;
 
-    // document.getElementById('inputError').style.display = 'none';
     document.getElementById(data).style.color = "#262626";
     document.getElementById(data).style.border = "none";
 
-    if (event.keyCode == 13) {
-      this.logIn();
-
-      return;
-    }
-
-    this[data] = value;
+    this[data] = document.getElementById(data).value;
   },
 
-  dataCheck: function() {
+  checkData: function() {
     if (!this.email.length || !this.password.length) {
       this.inputDataError = true;
 
@@ -69,53 +111,20 @@ var app = {
     }
   },
 
-  logIn: function() {
-    this.dataCheck();
-
-    if (!this.inputDataError) {
-      var loginData = {
-        email: this.email,
-        password: this.password
-      };
-
-      const http = new XMLHttpRequest();
-      const url =
-        "https://us-central1-mercdev-academy.cloudfunctions.net/login";
-
-      http.open("POST", url, true);
-      http.setRequestHeader("Content-Type", "application/json");
-
-      http.onload = function() {
-        const response = JSON.parse(http.responseText);
-        if (this.status == 200) {
-          app.inputDataError = false;
-          app.loggedIn = true;
-
-          app.name = response.name;
-          app.avatar = response.photoUrl;
-
-          app.updateAppState("logged-in");
+  makeRequest: async (url, method, data) => {
+    try {
+      let response = await fetch(url, {
+        method: method,
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
         }
-        if (this.status == 400) {
-          app.inputDataError = true;
+      });
 
-          app.updateAppState("log-in-error");
-        }
-      };
-
-      http.send(JSON.stringify(loginData));
-    } else {
-      return;
+      return response;
+    } catch (error) {
+      console.log(error);
     }
-  },
-
-  logOut: function() {
-    this.loggedIn = false;
-    this.email = "";
-    this.password = "";
-    this.avatar = "";
-    this.name = "";
-
-    this.updateAppState("log-out");
   }
+  /* UTILITIES <--- */
 };
