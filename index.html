@@ -11,16 +11,28 @@
   </head>
   <body class="auth-page" onload="app.init()">
     <div class="auth-page__background">
-      <img class="auth-page__background-image" src="files/background.png" alt="background" />
+      <img
+        class="auth-page__background-image"
+        src="files/background.png"
+        alt="background"
+      />
     </div>
 
     <div class="auth-page__container">
       <div class="auth-page__content">
         <div class="auth-page__logo">
-          <img class="auth-page__logo-image" src="files/w-mercury-development.svg" alt="Mercury" />
+          <img
+            class="auth-page__logo-image"
+            src="files/w-mercury-development.svg"
+            alt="Mercury"
+          />
         </div>
 
-        <form id="logInForm" class="common-window common-window_auth" onsubmit="app.logIn(event)">
+        <form
+          id="logInForm"
+          class="common-window common-window_auth"
+          onsubmit="app.logIn(event)"
+        >
           <div class="common-window__title">
             <h3>Log In</h3>
           </div>
@@ -52,10 +64,18 @@
             <h4>E-Mail or password is incorrect</h4>
           </div>
 
-          <input id="commonWindowButton" class="button common-window__button" type="submit" value="Login">
+          <input
+            id="commonWindowButton"
+            class="button common-window__button"
+            type="submit"
+            value="Login"
+          />
         </form>
 
-        <form id="loggedInBlock" class="common-window common-window_auth common-window_logged-in">
+        <form
+          id="loggedInBlock"
+          class="common-window common-window_auth common-window_logged-in"
+        >
           <div class="common-window__avatar">
             <img class="common-window__avatar_image" id="avatar" alt="avatar" />
           </div>

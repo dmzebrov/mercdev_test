@@ -74,7 +74,6 @@ input {
 
 /*  Auth page <--- */
 
-
 /* ---> Common window */
 .common-window {
   display: flex;
@@ -83,7 +82,7 @@ input {
   padding: 48px 48px 60px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);  
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
 }
 
 .common-window_auth {
@@ -138,7 +137,6 @@ input {
 
 /* Common window <--- */
 
-
 /* ---> Input/s */
 .inputs {
   width: 100%;
@@ -181,7 +179,6 @@ input {
 }
 /* Input/s <--- */
 
-
 /* ---> Error */
 .error {
   display: none;
@@ -196,7 +193,6 @@ input {
   color: #ed4159;
 }
 /* Error <--- */
-
 
 /* ---> Button */
 .button {
@@ -242,8 +238,6 @@ input {
 }
 /* Button <--- */
 
-
-
 @media screen and (max-width: 650px) {
   /* ---> Auth page*/
   .auth-page__logo {
@@ -270,7 +264,7 @@ input {
     font-size: 20px;
   }
 
-  .common-window__error{
+  .common-window__error {
     margin-top: 24px;
   }
 
@@ -289,7 +283,7 @@ input {
   /* Common window <--- */
 
   /* ---> Input/s */
-  .input-wrapper{
+  .input-wrapper {
     margin-bottom: 24px;
   }
   /* Input/s <--- */
