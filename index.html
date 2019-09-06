@@ -9,66 +9,66 @@
     <link rel="stylesheet" href="index.css" />
     <script src="index.js"></script>
   </head>
-  <body onload="app.init()">
-    <div class="background">
-      <img src="files/background.png" alt="background" />
+  <body class="auth-page" onload="app.init()">
+    <div class="auth-page__background">
+      <img class="auth-page__background-image" src="files/background.png" alt="background" />
     </div>
 
-    <main>
-      <div class="main_container">
-        <div class="logo">
-          <img src="files/w-mercury-development.svg" alt="logo" />
+    <div class="auth-page__container">
+      <div class="auth-page__content">
+        <div class="auth-page__logo">
+          <img class="auth-page__logo-image" src="files/w-mercury-development.svg" alt="Mercury" />
         </div>
 
-        <div id="logInForm" class="form">
-          <div class="form_title">
+        <form id="logInForm" class="common-window common-window_auth" onsubmit="app.logIn(event)">
+          <div class="common-window__title">
             <h3>Log In</h3>
           </div>
 
-          <div class="form_inputs">
-            <div class="form_email">
+          <div class="inputs">
+            <div class="input-wrapper">
               <input
                 id="email"
+                class="input"
                 type="email"
                 placeholder="E-Mail"
-                onkeyup="app.dataHandle('email', value)"
+                onkeyup="app.handleData('email', value)"
                 spellcheck="false"
               />
             </div>
 
-            <div class="form_password">
+            <div class="input-wrapper">
               <input
                 id="password"
+                class="input"
                 type="password"
                 placeholder="Password"
-                onkeyup="app.dataHandle('password', value)"
+                onkeyup="app.handleData('password', value)"
               />
             </div>
           </div>
 
-          <div id="inputError" class="form_error">
+          <div id="inputError" class="error common-window__error">
             <h4>E-Mail or password is incorrect</h4>
           </div>
 
-          <button onclick="app.logIn()">
-            Login
-          </button>
-        </div>
+          <input id="commonWindowButton" class="button common-window__button" type="submit" value="Login">
+        </form>
 
-        <div id="loggedInBlock" class="form form_logged-in">
-          <div class="form_avatar">
-            <img id="avatar" alt="avatar" />
+        <form id="loggedInBlock" class="common-window common-window_auth common-window_logged-in">
+          <div class="common-window__avatar">
+            <img class="common-window__avatar_image" id="avatar" alt="avatar" />
           </div>
 
-          <div class="form_name">
+          <div class="common-window__name">
             <h2 id="name"></h2>
           </div>
 
-          <button onclick="app.logOut()">
+          <button class="button common-window__button" onclick="app.logOut()">
             Logout
           </button>
-        </div>
+        </form>
       </div>
-    </main>
+    </div>
   </body>
 </html>
